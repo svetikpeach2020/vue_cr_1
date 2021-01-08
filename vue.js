@@ -14,14 +14,16 @@ const App = {
     },
     methods: {
         prev() {
-            this.activeIndex -= 1
+            if (this.activeIndex !== 0) {
+                this.activeIndex -= 1
+            }
         },
         reset() {
             this.activeIndex = 0
             this.isDone = false
         },
         nextOfFinish() {
-            if (this.activeIndex < (this.steps.length - 1)) {
+            if (!this.isFinishStep) {
                 this.activeIndex += 1
             } else this.isDone = true
         },

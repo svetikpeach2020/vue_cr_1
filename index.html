@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Основы Vue</title>
     <link rel="stylesheet" href="theme.css" />
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -33,7 +28,7 @@
                     {{ step.title }}
                 </li>
             </ul>
-            <div v-if="isDone === false">
+            <div v-if="!isDone">
                 <button
                         class="btn"
                         @click="prev"
