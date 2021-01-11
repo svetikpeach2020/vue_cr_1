@@ -9,40 +9,37 @@ const App = {
                 {title: 'Vuex', text: 'В блоке вы узнаете абсолютно все про Vuex. Вы узнаете как работать с данными, какие есть лучшие практики по их программированию и структурированию. Все на практике.'},
                 {title: 'Composition', text: 'Одним из наиболее важных обновлений в Vue 3 является появление альтернативного синтаксиса Composition API. В этом блоке вы узнаете все, чтобы полностью пользоваться данными синтаксисом на практических примерах. Помимо этого вы узнаете как работать совместно с Vue Router и Vuex.'},
             ],
-            isDone: false
+            isActive: true
         }
     },
     methods: {
         prev() {
             if (this.activeIndex !== 0) {
-                this.activeIndex -= 1
+                this.activeIndex--
             }
         },
         reset() {
             this.activeIndex = 0
-            this.isDone = false
+            this.isActive = true
         },
         nextOfFinish() {
             if (!this.isFinishStep) {
-                this.activeIndex += 1
-            } else this.isDone = true
+                this.activeIndex++
+            } else this.isActive = false
         },
         setActive(idx) {
             this.activeIndex = idx
         }
     },
     computed: {
-        curStep() {
-            return idx => this.activeIndex === idx
-        },
-        doneStep() {
-            return idx => this.activeIndex > idx
+        activeStep() {
+            return this.steps[this.activeIndex]
         },
         isDisabledBtn() {
             return this.activeIndex === 0;
         },
         isFinishStep() {
-            return this.activeIndex === (this.steps.length - 1)
+            return this.activeIndex === this.steps.length - 1
         }
     }
 }
